@@ -26,7 +26,7 @@ class MyArrayListTTests {
 	void setUp() throws Exception {
 		list1 = new MyArrayList<>();
 		list2 = new MyDLL<>();
-		
+		list3 = new MyArrayList<>();
 	}
 
 	/**
