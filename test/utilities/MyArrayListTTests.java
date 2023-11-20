@@ -152,7 +152,9 @@ class MyArrayListTTests {
 	 */
 	@Test
 	void testAddE() {
-		fail("Not yet implemented");
+		assertTrue(list1.add("A"));
+        	assertEquals(1, list1.size());
+        	assertEquals("A", list1.get(0));
 	}
 
 	/**
@@ -166,14 +168,11 @@ class MyArrayListTTests {
 		list3.add("D");
 		assertTrue(list1.addAll(list3));
 		assertEquals(4, list1.size());
-		/*assertEquals("A", list1.get(0));
-		assertEquals("B", list1.get(1));
-		assertEquals("C", list1.get(2));
-		assertEquals("D", list1.get(3));*/
-		char c = 'A';
-		for(int i=0;i<list1.size();i++) {
-			
-		}
+		assertEquals("A", list1.get(0));
+        	assertEquals("B", list1.get(1));
+        	assertEquals("C", list1.get(2));
+        	assertEquals("D", list1.get(3));
+		
 	}
 
 	/**
@@ -181,7 +180,21 @@ class MyArrayListTTests {
 	 */
 	@Test
 	void testAddAllLinkedList() {
-		fail("Not yet implemented");
+		list1.add("A");
+    		list1.add("B");
+    		list1.add("C");
+
+    		list2.add("D");
+    		list2.add("E");
+
+    		assertTrue(list1.addAll(list2));
+
+    		assertEquals(5, list1.size());
+    		assertEquals("A", list1.get(0));
+    		assertEquals("B", list1.get(1));
+    		assertEquals("C", list1.get(2));
+    		assertEquals("D", list1.get(3));
+    		assertEquals("E", list1.get(4));
 	}
 	
 	/**
@@ -189,7 +202,17 @@ class MyArrayListTTests {
 	 */
 	@Test
 	void testGet() {
-		fail("Not yet implemented");
+		list1.add("A");
+        	list1.add("B");
+        	list1.add("C");
+        
+        	assertEquals("A", list1.get(0));
+        	assertEquals("B", list1.get(1));
+        	assertEquals("C", list1.get(2));
+        
+        	assertThrows(IndexOutOfBoundsException.class, () -> {
+            	list1.get(3);
+        });
 	}
 
 	/**
@@ -197,7 +220,18 @@ class MyArrayListTTests {
 	 */
 	@Test
 	void testRemoveInt() {
-		fail("Not yet implemented");
+		list1.add("A");
+        	list1.add("B");
+        	list1.add("C");
+        
+        	assertEquals("B", list1.remove(1));
+        	assertEquals(2, list1.size());
+        	assertEquals("A", list1.get(0));
+        	assertEquals("C", list1.get(1));
+        
+        	assertThrows(IndexOutOfBoundsException.class, () -> {
+            	list1.remove(2);
+        	});
 	}
 
 	/**
@@ -205,7 +239,16 @@ class MyArrayListTTests {
 	 */
 	@Test
 	void testRemoveObject() {
-		fail("Not yet implemented");
+	        list1.add("A");
+        	list1.add("B");
+        	list1.add("C");
+        
+        	assertEquals("B", list1.remove("B"));
+        	assertEquals(2, list1.size());
+        	assertEquals("A", list1.get(0));
+        	assertEquals("C", list1.get(1));
+        
+        	assertNull(list1.remove("D"));
 	}
 
 	/**
@@ -213,7 +256,19 @@ class MyArrayListTTests {
 	 */
 	@Test
 	void testSet() {
-		fail("Not yet implemented");
+	 	list1.add("A");
+        	list1.add("B");
+       		list1.add("C");
+        
+        	assertEquals("B", list1.set(1, "X"));
+        	assertEquals(3, list1.size());
+        	assertEquals("A", list1.get(0));
+        	assertEquals("X", list1.get(1));
+        	assertEquals("C", list1.get(2));
+        
+        	assertThrows(IndexOutOfBoundsException.class, () -> {
+            	list1.set(3, "Y");
+        	});
 	}
 
 	/**
@@ -221,7 +276,13 @@ class MyArrayListTTests {
 	 */
 	@Test
 	void testIsEmpty() {
-		fail("Not yet implemented");
+		assertTrue(list1.isEmpty());
+        
+        	list1.add("A");
+        	assertFalse(list1.isEmpty());
+        
+        	list1.clear();
+        	assertTrue(list1.isEmpty());
 	}
 
 	/**
@@ -229,7 +290,14 @@ class MyArrayListTTests {
 	 */
 	@Test
 	void testContains() {
-		fail("Not yet implemented");
+	    	list1.add("A");
+        	list1.add("B");
+        	list1.add("C");
+        
+        	assertTrue(list1.contains("A"));
+        	assertTrue(list1.contains("B"));
+        	assertTrue(list1.contains("C"));
+        	assertFalse(list1.contains("D"));
 	}
 
 	/**
