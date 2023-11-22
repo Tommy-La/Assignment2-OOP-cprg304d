@@ -8,11 +8,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * 
+ */
 class MyStackTest {
 
-	private MyStack<Integer> stack;
-	
+    private MyStack<Integer> stack;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -21,54 +22,50 @@ class MyStackTest {
 		stack = new MyStack<>();
 	}
 
-
 	/**
-	 * Test method for {@link utilities.MyStack#stackPush(java.lang.Object)}.
+	 * Test method for {@link utilities.MyStack#MyStack()}.
 	 */
 	@Test
-	void testStackPush() {
-		stack.stackPush(10);
-        stack.stackPush(2);
-        assertEquals(2, stack.stackPeek());
+	void testMyStack() {
+		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link utilities.MyStack#stackPop()}.
+	 * Test method for {@link utilities.MyStack#push(java.lang.Object)}.
 	 */
 	@Test
-	void testStackPop() {
-		stack.stackPush(10);
-        stack.stackPush(2);
-
-        Integer poppedValue = stack.stackPop();
-        assertEquals(2, poppedValue);
-        assertEquals(10, stack.stackPeek());
+	void testPush() {
+		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link utilities.MyStack#stackPeek()}.
+	 * Test method for {@link utilities.MyStack#pop()}.
 	 */
 	@Test
-	void testStackPeek() {
-		stack.stackPush(10);
-        stack.stackPush(100);
-
-        assertEquals(100, stack.stackPeek());
-        assertEquals(100, stack.stackPeek()); //Check again if stackPeek remove the element
+	void testPop() {
+		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link utilities.MyStack#stackSearch(java.lang.Object)}.
+	 * Test method for {@link utilities.MyStack#peek()}.
 	 */
 	@Test
-	void testStackSearch() {
-		stack.stackPush(10);
-        stack.stackPush(20);
-        stack.stackPush(30);
+	void testPeek() {
+		fail("Not yet implemented");
+	}
 
-        assertEquals(1, stack.stackSearch(30)); // 30 is at position 1
-        assertEquals(2, stack.stackSearch(20)); // 20 is at position 2
-        assertEquals(-1, stack.stackSearch(40)); // 40 is not in the stack
+	/**
+	 * Test method for {@link utilities.MyStack#clear()}.
+	 */
+	@Test
+	void testClear() {
+		 MyStack<Double> stack = new MyStack<>();
+	        stack.push(3.14);
+	        stack.push(2.71);
+
+	        assertFalse(stack.isEmpty());
+	        stack.clear();
+	        assertTrue(stack.isEmpty());
 	}
 
 	/**
@@ -76,9 +73,63 @@ class MyStackTest {
 	 */
 	@Test
 	void testIsEmpty() {
-		assertTrue(stack.isEmpty());
-		stack.stackPush(100);
-		assertFalse(stack.isEmpty());
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link utilities.MyStack#toArray()}.
+	 */
+	@Test
+	void testToArray() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link utilities.MyStack#toArray(E[])}.
+	 */
+	@Test
+	void testToArrayEArray() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link utilities.MyStack#contains(java.lang.Object)}.
+	 */
+	@Test
+	void testContains() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link utilities.MyStack#search(java.lang.Object)}.
+	 */
+	@Test
+	void testSearch() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link utilities.MyStack#iterator()}.
+	 */
+	@Test
+	void testIterator() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link utilities.MyStack#equals(utilities.StackADT)}.
+	 */
+	@Test
+	void testEqualsStackADTOfE() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link utilities.MyStack#size()}.
+	 */
+	@Test
+	void testSize() {
+		fail("Not yet implemented");
 	}
 
 }
