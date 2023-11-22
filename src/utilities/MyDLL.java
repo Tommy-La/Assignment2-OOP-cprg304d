@@ -15,6 +15,7 @@ public class MyDLL<E> implements ListADT<E> {
 	//Construct empty DLL.
 	public MyDLL() {
 		this.head = this.tail = null;
+		this.size = 0;
 	}
 
 	
@@ -31,26 +32,70 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return false;
+		if (toAdd == null) {
+            		throw new NullPointerException("Null element was given");
+        }
+        	if (index < 0 || index > size) {
+            		throw new IndexOutOfBoundsException("Index out of range");
+        }
+
+        MyDLLNode<E> newNode = new MyDLLNode<>(toAdd);
+
+        if (index == 0) { 
+            	newNode.setNext(head);
+            	head = newNode;
+
+        	if (size == 0) { 
+                	tail = newNode;
+            	}
+        } else if (index == size) {
+            	tail.setNext(newNode);
+            	newNode.setPrev(tail);
+        	tail = newNode;
+        } else {
+        	MyDLLNode<E> current = getNode(index);
+        	MyDLLNode<E> prev = current.getPrev();
+
+            	prev.setNext(newNode);
+            	newNode.setPrev(prev);
+           	newNode.setNext(current);
+            	current.setPrev(newNode);
+        }
+
+        size++;
+        return true;
 	}
 
 	@Override
 	public boolean add(E toAdd) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return false;
+		return add(size, toAdd);
 	}
 
 	@Override
 	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		if (toAdd == null) {
+            		throw new NullPointerException("Null element was given");
+        	}
+
+        	boolean modified = false;
+        	Iterator<? extends E> iterator = toAdd.iterator();
+        	while (iterator.hasNext()) {
+            		if (add(iterator.next())) {
+               			modified = true;
+            	}
+        }
+
+        	return modified;
+   	}
 
 	@Override
 	public E get(int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+        	if (index < 0 || index >= size) {
+            		throw new IndexOutOfBoundsException("Index out of range");
+        	}
+
+        	MyDLLNode<E> node = getNode(index);
+        	return node.getData();
 	}
 
 	@Override
@@ -73,8 +118,7 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return size == 0;
 	}
 
 	@Override
