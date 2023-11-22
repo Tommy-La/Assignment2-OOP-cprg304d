@@ -1,11 +1,14 @@
 package utilities;
 
 import java.util.EmptyStackException;
-import utilities.Iterator;
 
 public class MyStack<E> implements StackADT<E> {
 
-    private MyArrayList<E> stackList;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private MyArrayList<E> stackList;
 
     public MyStack() {
         stackList = new MyArrayList<>();
