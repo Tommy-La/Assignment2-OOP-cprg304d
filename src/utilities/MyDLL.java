@@ -17,51 +17,30 @@ public class MyDLL<E> implements ListADT<E> {
 		this.head = this.tail = null;
 		this.size = 0;
 	}
-
-
-	
 	
 	public MyDLLNode<E> getHead() {
 		return head;
 	}
 
-
-
-
 	public void setHead(MyDLLNode<E> head) {
 		this.head = head;
 	}
-
-
-
 
 	public MyDLLNode<E> getTail() {
 		return tail;
 	}
 
-
-
-
 	public void setTail(MyDLLNode<E> tail) {
 		this.tail = tail;
 	}
-
-
-
 
 	public int getSize() {
 		return size;
 	}
 
-
-
-
 	public void setSize(int size) {
 		this.size = size;
 	}
-
-
-
 
 	@Override
 	public int size() {
@@ -214,7 +193,7 @@ public class MyDLL<E> implements ListADT<E> {
 	        removedNode = current;
 	    }
 
-	    setSize(size() - 1);
+	    setSize(size - 1);
 	    return removedNode.getElement();
 	}
 
@@ -222,25 +201,60 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public E remove(E toRemove) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		if (toRemove == null) {
+            throw new NullPointerException("Specified element is null");
+        }
+
+        //Iterate through the list to find the node to remove
+        MyDLLNode<E> current = head;
+        while (current != null) {
+            if (toRemove.equals(current.getElement())) {
+                //Found the element to remove
+                if (current.getPrev() != null) {
+                    //Adjust the previous node's next pointer using the setter
+                    current.getPrev().setNext(current.getNext());
+                } else {
+                    //Update the head if the element to remove is the first in the list
+                    head = current.getNext();
+                }
+
+                if (current.getNext() != null) {
+                    current.getNext().setPrev(current.getPrev());
+                }
+                // Return the removed element
+                return current.getElement(); 
+            }
+            current = current.getNext();
+        }
+
+        // Element not found in the list
+        return null;
+    }
 
 	@Override
 	public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException {
-	    if (toChange == null) {
-	        throw new NullPointerException("Null element was given");
-	    }
+		if (toChange == null) {
+            throw new NullPointerException("Specified element is null");
+        }
 
-	    if (index < 0 || index >= size) {
-	        throw new IndexOutOfBoundsException("Index out of range");
-	    }
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("Index out of range: " + index);
+        }
 
-	    MyDLLNode<E> currentNode = getNode(index);
-	    E oldValue = currentNode.getElement();
-	    currentNode.setElement(toChange);
-	    return oldValue;
-	}
+        // Traverse the list to find the node at the specified index
+        MyDLLNode<E> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
+        }
+
+        // Save the current data to return later
+        E previousElement = current.getElement();
+
+        // Update the data of the node with the new element
+        current.setElement(toChange);
+
+        return previousElement;
+    }
 
 	@Override
 	public boolean isEmpty() {
@@ -249,10 +263,25 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public boolean contains(E toFind) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return false;
+		if (toFind == null) {
+            throw new NullPointerException("Specified element is null");
+        }
+
+        // Traverse the list to find the element
+        MyDLLNode<E> current = head;
+        while (current != null) {
+            if (toFind.equals(current.getElement())) {
+            	 // Element found in the list
+            	return true;
+            }
+            current = current.getNext();
+        }
+
+        // Element not found in the list
+        return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
     public E[] toArray(E[] toHold) throws NullPointerException {
         if (toHold == null) {
