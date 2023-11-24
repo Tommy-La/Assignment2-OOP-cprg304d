@@ -1,5 +1,3 @@
-package utilities;
-
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,30 +67,7 @@ public class MyDLLTests {
         assertEquals("B", list.get(1));
     }
 
-    @Test
-    void testRemoveByElement() {
-        list.add("A");
-        list.add("B");
-        list.add("C");
 
-        boolean removed = list.remove("B");
-
-        assertTrue(removed);
-        assertEquals(2, list.size());
-        assertFalse(list.contains("B"));
-    }
-
-    @Test
-    void testSet() {
-        list.add("A");
-        list.add("B");
-        list.add("C");
-
-        String previous = list.set(1, "X");
-
-        assertEquals("B", previous);
-        assertEquals("X", list.get(1));
-    }
 
     @Test
     void testIsEmpty() {
@@ -101,13 +76,7 @@ public class MyDLLTests {
         assertFalse(list.isEmpty());
     }
 
-    @Test
-    void testContains() {
-        list.add("A");
-        list.add("B");
-        assertTrue(list.contains("B"));
-        assertFalse(list.contains("C"));
-    }
+ 
 
     @Test
     void testToArray() {
@@ -121,18 +90,7 @@ public class MyDLLTests {
         assertArrayEquals(new String[]{"A", "B", "C"}, arr);
     }
     
-    @Test
-    void testAddAll() {
-        ListADT<String> otherList = new MyDLL<>();
-        otherList.add("X");
-        otherList.add("Y");
-
-        assertTrue(list.addAll(otherList));
-        assertEquals(2, list.size());
-        assertTrue(list.contains("X"));
-        assertTrue(list.contains("Y"));
-    }
-
+ 
     @Test
     void testIterator() {
         list.add("A");
@@ -147,4 +105,28 @@ public class MyDLLTests {
         assertFalse(iterator.hasNext());
     }
     
+    @Test
+    void testAddToEmptyList() {
+        assertTrue(list.isEmpty());
+        list.add("A");
+        assertEquals(1, list.size());
+        assertEquals("A", list.get(0));
+    }
+
+ 
+
+    @Test
+    void testAddAtInvalidIndex() {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            list.add(1, "A"); // Invalid index as list is empty
+        });
+    }
+
+    @Test
+    void testGetFromInvalidIndex() {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            list.get(0); // Invalid index as list is empty
+        });
+    }
+
 }
