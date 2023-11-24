@@ -1,10 +1,5 @@
 package utilities;
 
-
-import utilities.MyDLL;
-import utilities.MyDLLNode;
-
-
 public class MyQueue<E> implements QueueADT<E>{
 	
 	
@@ -103,21 +98,31 @@ public class MyQueue<E> implements QueueADT<E>{
 		
 		return queue.getSize();
 	}
-
 	
+	public int maxSize(int size) {
+		
+		queue.setMaxSize(size);
+		
+		return queue.getMaxSize();
+	}
 	
-
 
 
 
 	@Override
 	public boolean isFull() {     
+		 
+
 		
+			
 		
-		
-		return queue.getSize() == queue.size();
+		return queue.getSize() == queue.getMaxSize();
 	}
+
+
 	
+		
+
 	
 	
 
