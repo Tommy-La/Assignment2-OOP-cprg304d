@@ -11,6 +11,16 @@ public class MyDLL<E> implements ListADT<E> {
 	private MyDLLNode<E> head;   
 	private MyDLLNode<E> tail; 
 	private int size;
+	private int maxSize = 0;
+	
+	public void setMaxSize(int listSize) {
+		
+		this.maxSize = listSize;
+	}
+	
+	public int getMaxSize() {
+		return maxSize;
+	}
 	
 	//Construct empty DLL.
 	public MyDLL() {

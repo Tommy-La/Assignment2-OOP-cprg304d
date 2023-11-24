@@ -3,6 +3,8 @@ package utilities;
 
 import java.io.*;
 
+import exception.EmptyQueueException;
+
 /**
  * This is the professional Queue Interface for Advanced Object 
  * Oriented Programming (CRPG 311) at SAIT Polytechnic.
