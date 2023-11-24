@@ -107,6 +107,42 @@ public class MyDLLTests {
         assertFalse(list.contains("C"));
     }
 
-    // ....
-  
+    @Test
+    void testToArray() {
+        list.add("A");
+        list.add("B");
+        list.add("C");
+
+        String[] arr = new String[3];
+        arr = list.toArray(arr);
+
+        assertArrayEquals(new String[]{"A", "B", "C"}, arr);
+    }
+    
+    @Test
+    void testAddAll() {
+        ListADT<String> otherList = new MyDLL<>();
+        otherList.add("X");
+        otherList.add("Y");
+
+        assertTrue(list.addAll(otherList));
+        assertEquals(2, list.size());
+        assertTrue(list.contains("X"));
+        assertTrue(list.contains("Y"));
+    }
+
+    @Test
+    void testIterator() {
+        list.add("A");
+        list.add("B");
+        list.add("C");
+
+        Iterator<String> iterator = list.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals("A", iterator.next());
+        assertEquals("B", iterator.next());
+        assertEquals("C", iterator.next());
+        assertFalse(iterator.hasNext());
+    }
+    
 }
