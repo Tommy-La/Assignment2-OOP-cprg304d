@@ -105,7 +105,7 @@ class MyArrayListTTests {
 	 */
 	@Test
 	void testAddIntENullPointer() {
-		assertThrows(IndexOutOfBoundsException.class, ()->{
+		assertThrows(NullPointerException.class, ()->{
 			list1.add(0,null);
 		});
 	}
@@ -131,7 +131,7 @@ class MyArrayListTTests {
 		list1.add("C");
 		assertTrue(list1.add(1,"B"));
 		assertEquals(3, list1.size());
-		assertEquals("B", list1.get(0));
+		assertEquals("B", list1.get(1));
 	}
 
 	/**
