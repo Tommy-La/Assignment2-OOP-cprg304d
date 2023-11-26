@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import exception.EmptyQueueException;
 import utilities.Iterator;
 
 
@@ -39,7 +41,11 @@ public class MyQueueTest {
         queue.enqueue(42);
         queue.enqueue(2);
 
-        queue.dequeue();
+        try {
+			queue.dequeue();
+		} catch (EmptyQueueException e) {
+			e.printStackTrace();
+		}
         assertFalse(queue.isEmpty());
         assertEquals(1, queue.size());
     }
@@ -50,7 +56,11 @@ public class MyQueueTest {
 		 queue.enqueue(42);
 		 queue.enqueue(7);
 		 
-		 assertEquals(42, queue.peek());
+		 try {
+			assertEquals(42, queue.peek());
+		} catch (EmptyQueueException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
@@ -149,7 +159,11 @@ public class MyQueueTest {
 	    queue.enqueue(2);
 	    assertEquals(2, queue.size());
 	
-	    queue.dequeue();
+	    try {
+			queue.dequeue();
+		} catch (EmptyQueueException e) {
+			e.printStackTrace();
+		}
         assertEquals(1, queue.size());
 	    
 	}

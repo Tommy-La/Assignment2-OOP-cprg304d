@@ -231,6 +231,7 @@ public class MyDLL<E> implements ListADT<E> {
                 if (current.getNext() != null) {
                     current.getNext().setPrev(current.getPrev());
                 }
+                setSize(getSize() - 1);
                 // Return the removed element
                 return current.getElement(); 
             }

@@ -1,5 +1,7 @@
 package utilities;
 
+import exception.EmptyQueueException;
+
 public class MyQueue<E> implements QueueADT<E>{
 	
 	
@@ -21,9 +23,12 @@ public class MyQueue<E> implements QueueADT<E>{
 	
 
 	@Override
-	public E dequeue()  {
+	public E dequeue() throws EmptyQueueException  {
 		
-//		 if (queue.getHead() == null) { throw EmptyQueueException }
+		if (queue.getHead() == null)
+		 {
+			 throw new EmptyQueueException("Queue is empty");
+		 }
 		 
 		
 		E temp = queue.getHead().getElement();
@@ -35,8 +40,12 @@ public class MyQueue<E> implements QueueADT<E>{
 
 	  
 	@Override
-	public E peek() //throws EmptyQueueException 
+	public E peek() throws EmptyQueueException 
 	{
+		if (queue.getHead() == null)
+				 {
+					 throw new EmptyQueueException("Queue is empty");
+				 }
 		E head = (E) queue.getHead().getElement();
 		return head;
 	}
@@ -54,7 +63,6 @@ public class MyQueue<E> implements QueueADT<E>{
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
 		return queue.iterator();
 	}
 
@@ -110,20 +118,8 @@ public class MyQueue<E> implements QueueADT<E>{
 
 
 	@Override
-	public boolean isFull() {     
-		 
-
-		
-			
-		
+	public boolean isFull() {     	
 		return queue.getSize() == queue.getMaxSize();
 	}
-
-
-	
-		
-
-	
-	
 
 }
