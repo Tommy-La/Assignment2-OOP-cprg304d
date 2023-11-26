@@ -29,6 +29,7 @@ class MyStackTest {
     @Test
     void testMyStack() {
         MyStack<Integer> newStack = new MyStack<>();
+        //Verifies that a new stack is empty and has a size of 0
         assertTrue(newStack.isEmpty());
         assertEquals(0, newStack.size());
     }
@@ -38,9 +39,12 @@ class MyStackTest {
      */
     @Test
     void testPush() {
-        stack.push(42);
+        stack.push(13);
+        stack.push(-1);
+
+        //Verifies that an element is successfully pushed onto the stack
         assertFalse(stack.isEmpty());
-        assertEquals(1, stack.size());
+        assertEquals(2, stack.size());
     }
 
     /**
@@ -48,9 +52,11 @@ class MyStackTest {
      */
     @Test
     void testPop() {
-        stack.push(42);
+        stack.push(4);
         int poppedValue = stack.pop();
-        assertEquals(42, poppedValue);
+        //Verifies that an element is successfully popped from the stack.
+        assertEquals(4, poppedValue);
+        
         assertTrue(stack.isEmpty());
         assertEquals(0, stack.size());
     }
@@ -60,9 +66,9 @@ class MyStackTest {
      */
     @Test
     void testPeek() {
-        stack.push(42);
-
-        assertEquals(42, stack.peek());
+        stack.push(32);
+        //Verifies that the peek method returns the top element without removing it.
+        assertEquals(32, stack.peek());
         assertFalse(stack.isEmpty());
     }
 
@@ -77,6 +83,7 @@ class MyStackTest {
         stack.push(1);
 
         assertFalse(stack.isEmpty());
+        //Verifies that the stack is successfully cleared.
         stack.clear();
         assertTrue(stack.isEmpty());
     }
@@ -86,6 +93,7 @@ class MyStackTest {
      */
     @Test
     void testIsEmpty() {
+    	//Verifies that the isEmpty method correctly identifies a stack is empty or not.
         assertTrue(stack.isEmpty());
         stack.push(42);
         assertFalse(stack.isEmpty());
@@ -100,6 +108,7 @@ class MyStackTest {
         stack.push(2);
         stack.push(3);
 
+        //Verifies that the stack is successfully converted to an array.
         Object[] array = stack.toArray();
         assertArrayEquals(new Object[]{1, 2, 3}, array);
     }
@@ -112,7 +121,7 @@ class MyStackTest {
         stack.push(1);
         stack.push(2);
         stack.push(3);
-
+        //Verifies that the stack is successfully copied to the specified array.
         Integer[] array = new Integer[3];
         stack.toArray(array);
         assertArrayEquals(new Integer[]{1, 2, 3}, array);
@@ -125,6 +134,7 @@ class MyStackTest {
     void testContains() {
         assertFalse(stack.contains(42));
         stack.push(42);
+        //Verifies that the stack correctly identifies if it contain an element.
         assertTrue(stack.contains(42));
     }
 
@@ -136,10 +146,10 @@ class MyStackTest {
         stack.push(1);
         stack.push(2);
         stack.push(3);
-
+        //Verifies that the position of an element is correctly identified in the stack.
         assertEquals(1, stack.search(3));
         assertEquals(2, stack.search(2));
-        assertEquals(-1, stack.search(42));
+        assertEquals(-1, stack.search(30));
     }
 
     /**
@@ -151,6 +161,7 @@ class MyStackTest {
         stack.push(2);
         stack.push(3);
 
+        //Verifies that the iterator correctly iterates through the elements of the stack.
         StringBuilder result = new StringBuilder();
         Iterator<Integer> iterator = stack.iterator(); 
 
@@ -167,6 +178,10 @@ class MyStackTest {
     @Test
     void testEqualsStackADTOfE() {
         MyStack<Integer> stack2 = new MyStack<>();
+        //Verifies that the equality of two stacks is correctly determined.
+        stack.push(10);
+        stack2.push(10);
+
         assertTrue(stack.equals(stack2));
 
         stack.push(1);
@@ -181,6 +196,7 @@ class MyStackTest {
      */
     @Test
     void testSize() {
+    	//Verifies that the size of the stack is correctly return.
         assertEquals(0, stack.size());
 
         stack.push(1);
